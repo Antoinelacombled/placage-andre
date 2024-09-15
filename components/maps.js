@@ -6,11 +6,13 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 export default function Maps() {
   const defaultProps = {
     center: {
-      lat: 14.99835602,
-      lng: 77.01502627,
+      lat: 48.8453749,
+      lng: 2.3947583,
     },
-    zoom: 11,
+    zoom: 15,
   };
+
+  console.log(process.env.GOOGLE_MAPS_API_KEY);
 
   return (
     // Important! Always set the container height explicitly
