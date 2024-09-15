@@ -1,0 +1,64 @@
+import React from "react";
+import Image from "next/image";
+
+const Collection = () => {
+  const collections = [
+    {
+      name: "Arch",
+      image: "/arch.jpg",
+      description:
+        "Le style de la série Arch est basé sur une série de lignes et de courbes parfaitement proportionnées, résultant en cette œuvre d'art unique.",
+    },
+    {
+      name: "Wave",
+      image: "/wave.jpg",
+      description:
+        'La série Wave donne même aux espaces les plus modestes une beauté élégante et tranquille. Elle capture la beauté sereine de la "mer". Les vagues se brisant au loin évoquent un sentiment de tranquillité.',
+    },
+    {
+      name: "Kvadrat",
+      image: "/kvadrat.jpg",
+      description:
+        'Notre série Kvadrat Really est fabriquée à partir de textiles en laine "recyclée". Les multiples couches créent un aspect tactile et sculptural. Ils sont encadrés dans des cadres en chêne massif faits à la main.',
+    },
+  ];
+
+  return (
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-light">Collections en vedette</h2>
+          <a
+            href="#"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            Découvrir tout
+          </a>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {collections.map((collection) => (
+            <div key={collection.name} className="group">
+              <div className="relative aspect-[4/3] mb-4">
+                <Image
+                  src={collection.image}
+                  alt={collection.name}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-white text-4xl font-light">
+                    {collection.name}
+                  </h3>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm">{collection.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Collection;
