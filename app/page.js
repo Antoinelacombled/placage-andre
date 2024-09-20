@@ -6,6 +6,15 @@ import { ExpertiseSection } from "../components/expertise";
 import { ProductsSection } from "../components/expertise";
 import googleMapReact from "google-map-react";
 import Maps from "@/components/maps";
+import Image from "next/image";
+import NextImage from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Header from "@/components/header";
+import { ArrowRight } from "lucide-react";
+import DoubleCard from "@/components/doubleCard";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const videoRef = useRef(null);
@@ -47,28 +56,7 @@ export default function Home() {
   return (
     <main className="min-h-screen font-sans bg-white">
       {/* Header */}
-      <header
-        ref={headerRef}
-        className="text-white fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-10 py-4 px-6"
-      >
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold">Placages André</div>
-          <nav>
-            <ul className="flex space-x-20">
-              {["Produits", "À propos", "Contact"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-white hover:text-gray-900 transition-colors backdrop-invert-0"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       {/* Section d'accueil */}
       <section className="relative h-screen overflow-hidden">
@@ -78,24 +66,27 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 object-cover w-full h-full"
         >
           <source src="/video2.mp4" type="video/mp4" />
           Votre navigateur ne prend pas en charge la vidéo.
         </video>
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-start justify-center px-6 sm:px-12 lg:px-24">
-          <h1 className="text-white text-4xl sm:text-6xl lg:text-7xl font-light leading-tight max-w-4xl mb-4">
+        <div className="absolute inset-0 flex flex-col items-start justify-center px-6 bg-black bg-opacity-40 sm:px-12 lg:px-24">
+          <h1 className="max-w-4xl mb-4 text-4xl font-light leading-tight text-white sm:text-6xl lg:text-7xl">
             Négociant en bois
             <br />
             Paris intra-muros
           </h1>
-          <p className="text-white text-xl sm:text-2xl font-light max-w-2xl mb-8">
-            Entreprise familiale spécialisée dans le commerce de bois, la
-            découpe de bois et la livraison de bois depuis 1958
+          <p className="max-w-2xl mb-8 text-xl font-light text-white sm:text-2xl">
+            Entreprise familiale <b>spécialisée dans le commerce de bois</b>, la
+            découpe de bois et la livraison de bois <b>depuis 1958</b>
           </p>
-          <button className="bg-white text-gray-900 px-8 py-3 rounded-full hover:bg-gray-100 transition-colors duration-300">
+          <button className="px-8 py-3 text-gray-900 transition-all duration-300 bg-white rounded-full hover:bg-gray-100 hover:shadow-lg hover:scale-105 hover:text-green-600">
             Découvrir nos produits
           </button>
+          <div className="absolute hidden bottom-16 right-24 lg:block">
+            <DoubleCard />
+          </div>
         </div>
       </section>
 
@@ -105,21 +96,21 @@ export default function Home() {
 
       {/* Section Témoignages Clients (mise à jour) */}
       <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-light text-center mb-16">
+        <div className="container px-4 mx-auto">
+          <h2 className="mb-16 text-4xl font-light text-center">
             Avis de nos clients
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+              <div key={index} className="p-6 bg-white rounded-lg shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                  <div className="w-12 h-12 mr-4 bg-gray-300 rounded-full"></div>
                   <div>
                     <p className="font-semibold">{testimonial.name}</p>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-4">{testimonial.comment}</p>
+                <p className="mb-4 text-gray-600">{testimonial.comment}</p>
                 <div className="flex">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <svg

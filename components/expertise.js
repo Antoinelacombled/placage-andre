@@ -1,19 +1,27 @@
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Section Expertise (anciennement Collections en vedette)
 const ExpertiseSection = () => {
+  const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
+
   const expertises = [
+    {
+      name: "Wave",
+      image: "/photo_2.avif",
+      description:
+        "The Wave series gives even the humblest of spaces an elegant and quiet beauty. It captures the serene beauty of the 'sea'. Waves crashing in the distance, evokes sense of tranquility",
+    },
     {
       name: "Expertise 1",
       image: "/photo_1.avif",
       description:
         "The style of the Arch series is based on a series of perfectly proportioned lines and curves, resulting in this unique artwork.",
-    },
-    {
-      name: "Expertise 2",
-      image: "/photo_2.avif",
-      description:
-        'The Wave series gives even the humblest of spaces an elegant and quiet beauty. It captures the serene beauty of the "sea". Waves crashing in the distance, evokes sense of tranquility',
     },
     {
       name: "Expertise 3",
@@ -23,36 +31,62 @@ const ExpertiseSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const cards = cardsRef.current;
+    gsap.set(cards, { autoAlpha: 0, y: 50 });
+
+    ScrollTrigger.batch(cards, {
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          stagger: 0.15,
+          overwrite: true,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      },
+      start: "top 80%",
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
+    <section ref={sectionRef} className="py-16 bg-white">
+      <div className="container px-4 mx-auto">
+        <div className="flex items-center justify-between mb-12">
           <h2 className="text-4xl font-light">Expertises</h2>
           <a
             href="#"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 transition-colors hover:text-gray-900"
           >
             Discover all
           </a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {expertises.map((expertise) => (
-            <div key={expertise.name} className="group">
-              <div className="relative aspect-[3/4] mb-4 overflow-hidden">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {expertises.map((expertise, index) => (
+            <div
+              key={expertise.name}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className="relative overflow-hidden"
+            >
+              <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src={expertise.image}
                   alt={expertise.name}
                   layout="fill"
                   objectFit="cover"
-                  className=" transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-white text-4xl font-light">
-                    {expertise.name}
-                  </h3>
+                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white bg-black bg-opacity-40">
+                  <h3 className="mb-4 text-4xl font-light">{expertise.name}</h3>
+                  <p className="text-sm font-light line-clamp-3">
+                    {expertise.description}
+                  </p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm">{expertise.description}</p>
             </div>
           ))}
         </div>
@@ -97,36 +131,36 @@ const ProductsSection = () => {
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
+      <div className="container px-4 mx-auto">
+        <div className="flex items-center justify-between mb-8">
           <h2 className="text-4xl font-light">Nos produits</h2>
           <a
             href="#"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-gray-600 transition-colors hover:text-gray-900"
           >
             All products
           </a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <div key={product.name} className="group">
-              <div className="relative aspect-square mb-4 overflow-hidden">
+              <div className="relative mb-4 overflow-hidden aspect-square">
                 <Image
                   src={product.image}
                   alt={product.name}
                   layout="fill"
                   objectFit="cover"
-                  className=" transition-transform duration-300 group-hover:scale-105"
+                  className="transition-transform duration-300 group-hover:scale-105"
                 />
                 {product.promo && (
-                  <span className="absolute top-2 right-2 bg-yellow-400 text-xs font-semibold px-2 py-1">
+                  <span className="absolute px-2 py-1 text-xs font-semibold bg-yellow-400 top-2 right-2">
                     Promo
                   </span>
                 )}
               </div>
-              <h3 className="text-lg font-medium mb-1">{product.name}</h3>
-              <p className="text-gray-600 text-sm mb-2">{product.price}</p>
-              <p className="text-gray-500 text-sm mb-2">{product.color}</p>
+              <h3 className="mb-1 text-lg font-medium">{product.name}</h3>
+              <p className="mb-2 text-sm text-gray-600">{product.price}</p>
+              <p className="mb-2 text-sm text-gray-500">{product.color}</p>
               <div className="flex space-x-1"></div>
             </div>
           ))}
