@@ -49,7 +49,7 @@ const DoubleCard = () => {
 
       {/* Carte du dessous */}
       <div
-        className="overflow-hidden transition-all duration-300 ease-out bg-white border border-gray-300 shadow-lg bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-xl"
+        className="overflow-hidden transition-all duration-300 ease-out bg-white border border-gray-300 shadow-lg bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-xl"
         style={{
           transform: isHoveredBottom ? "translateY(-5px)" : "translateY(0)",
         }}
@@ -81,7 +81,12 @@ const DoubleCard = () => {
             <span className="text-sm text-white">Lun-Ven: 9h-18h</span>
           </div>
           <button className="flex items-center justify-center w-full px-4 py-2 mt-2 text-sm font-medium text-white transition-colors duration-300 bg-green-600 rounded-full hover:bg-green-700">
-            <span className="mr-2 text-white">Voir sur la carte</span>
+            <a
+              href="https://maps.app.goo.gl/T5nxXDsVJwcPCdx87"
+              className="mr-2 text-white"
+            >
+              Voir sur la carte
+            </a>
             <ArrowRight size={16} />
           </button>
         </div>
