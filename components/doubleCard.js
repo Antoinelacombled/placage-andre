@@ -6,6 +6,8 @@ const DoubleCard = () => {
   const [isHoveredTop, setIsHoveredTop] = useState(false);
   const [isHoveredBottom, setIsHoveredBottom] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="flex flex-col space-y-6" style={{ width: "340px" }}>
       {/* Carte du dessus */}
