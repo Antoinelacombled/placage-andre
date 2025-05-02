@@ -11,7 +11,7 @@ const DoubleCard = () => {
   return (
     <div className="flex flex-col space-y-6" style={{ width: "340px" }}>
       {/* Carte du dessus */}
-      <div
+      {/* <div
         className="relative overflow-hidden transition-all duration-300 ease-out transform border border-gray-300 shadow-lg cursor-pointer rounded-xl"
         style={{
           height: "200px",
@@ -33,9 +33,7 @@ const DoubleCard = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
         <div className="absolute inset-0 flex flex-col justify-end p-6">
-          <h3 className="mb-2 text-2xl font-bold text-white">
-            Dernière réalisation
-          </h3>
+          <h3 className="mb-2 text-2xl font-bold text-white">L'entreprise</h3>
           <div className="flex items-center text-white">
             <span className="mr-2 text-sm font-medium">Voir plus</span>
             <ArrowRight
@@ -47,7 +45,7 @@ const DoubleCard = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Carte du dessous */}
       <div
@@ -76,11 +74,11 @@ const DoubleCard = () => {
           </div>
           <div className="flex items-center mb-4 text-white">
             <MapPin size={18} className="mr-2" />
-            <span className="text-sm">123 Rue de Paris, 75012 Paris</span>
+            <span className="text-sm">30-34 rue de Picpus, 75012 Paris</span>
           </div>
           <div className="flex items-center mb-4 text-white">
             <Clock size={18} className="mr-2" />
-            <span className="text-sm text-white">Lun-Ven: 9h-18h</span>
+            <span className="text-sm text-white">Lun-Ven: 8h-17h30</span>
           </div>
           <button className="flex items-center justify-center w-full px-4 py-2 mt-2 text-sm font-medium text-white transition-colors duration-300 bg-green-600 rounded-full hover:bg-green-700">
             <a

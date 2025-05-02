@@ -51,10 +51,10 @@ const Header = () => {
       <div className="text-2xl font-bold tracking-normal">Placages André</div>
       <nav>
         <ul className="flex space-x-20">
-          {["Produits", "À propos", "Contact"].map((item) => (
+          {["Nous trouver", "À propos", "Contact"].map((item) => (
             <li key={item}>
               <a
-                href="#"
+                href={item === "Contact" ? "#contact" : "#"}
                 className="transition-colors hover:text-gray-200 hover:underline"
               >
                 {item}

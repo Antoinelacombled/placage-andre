@@ -13,6 +13,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/header";
 import { ArrowRight } from "lucide-react";
 import DoubleCard from "@/components/doubleCard";
+import Contact from "@/components/contact";
+import Footer from "@/components/footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,24 +33,24 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "Simona Mirea",
-      role: "Founder Hearth Agency",
+      name: "Guillaume Bourin",
+      role: "",
       comment:
-        "Wonderful, life saving experience a lot of time and energy. I highly recommend them and will definitely be back!",
+        "Bon service, rapide, et prix raisonnables. J'avais besoin de bandes de bois d'une largeur inférieure à 10cm, et la plupart des négociants refusent ce type de prestation. Mais Placages André me l'a fait en moins de 10min. Je recommande.",
       rating: 5,
     },
     {
-      name: "Leila Lina",
-      role: "Manager, Avallonis LLC",
+      name: "Nicolas François",
+      role: "",
       comment:
-        "The flight and service went very smoothly, all the staff were very pleasant and professional. Thank you for an amazing vacation!",
+        "Plusieurs années que je me fournis chez Placages André en tant que menuisier-ébéniste (agencement principalement) ; c'est une vraie chance de trouver une telle société en plein Paris !",
       rating: 5,
     },
     {
-      name: "Xavier Werren",
-      role: "Head Coordinator, Swiss Academics",
+      name: "Sergiu Zancu",
+      role: "",
       comment:
-        "My experience with Placages André has been exceptional. Despite having contacted them at the last minute, they have fulfilled all my requests. Attention to detail what they have is exactly what you would like to have, au revoir!",
+        "Accueil attentif, service compétent, matériaux de qualité, prix raisonnables.",
       rating: 5,
     },
   ];
@@ -79,10 +81,10 @@ export default function Home() {
           </h1>
           <p className="max-w-2xl mb-8 text-xl font-light text-white sm:text-2xl">
             Entreprise familiale <b>spécialisée dans le commerce de bois</b>, la
-            découpe de bois et la livraison de bois <b>depuis 1958</b>
+            découpe de bois et la livraison de bois <b>depuis 1957</b>
           </p>
           <button className="px-8 py-3 text-gray-900 transition-all duration-300 bg-white rounded-full hover:bg-gray-100 hover:shadow-lg hover:scale-105 hover:text-green-600">
-            Découvrir nos produits
+            Contactez-nous
           </button>
           <div className="absolute hidden bottom-16 right-24 lg:block">
             <DoubleCard />
@@ -92,25 +94,28 @@ export default function Home() {
 
       <ExpertiseSection />
 
-      <ProductsSection />
+      {/* <ProductsSection /> */}
 
       {/* Section Témoignages Clients (mise à jour) */}
       <section className="py-16 bg-gray-100">
         <div className="container px-4 mx-auto">
-          <h2 className="mb-16 text-4xl font-light text-center">
+          <h2 className="mb-16 text-4xl font-light text-center text-black">
             Avis de nos clients
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg shadow-md">
+              <div
+                key={index}
+                className="p-6 text-black bg-white rounded-lg shadow-md"
+              >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 mr-4 bg-gray-300 rounded-full"></div>
                   <div>
                     <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="text-sm text-black">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="mb-4 text-gray-600">{testimonial.comment}</p>
+                <p className="mb-4 text-black">{testimonial.comment}</p>
                 <div className="flex">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <svg
@@ -130,6 +135,8 @@ export default function Home() {
       <section>
         <Maps />
       </section>
+      <Contact />
+      <Footer />
     </main>
   );
 }

@@ -12,22 +12,22 @@ const ExpertiseSection = () => {
 
   const expertises = [
     {
-      name: "Wave",
-      image: "/photo_2.avif",
-      description:
-        "The Wave series gives even the humblest of spaces an elegant and quiet beauty. It captures the serene beauty of the 'sea'. Waves crashing in the distance, evokes sense of tranquility",
-    },
-    {
-      name: "Expertise 1",
+      name: "Fournisseur de bois",
       image: "/photo_1.avif",
       description:
-        "The style of the Arch series is based on a series of perfectly proportioned lines and curves, resulting in this unique artwork.",
+        "Nous proposons une large gamme d'essences de bois. Notre expertise nous permet de vous conseiller dans le choix des essences adaptées à vos projets.",
     },
     {
-      name: "Expertise 3",
+      name: "Découpe sur mesure",
+      image: "/photo_2.avif",
+      description:
+        "Nos experts utilisent des équipements de haute précision pour garantir des découpes nettes et professionnelles.",
+    },
+    {
+      name: "Livraison",
       image: "/photo_3.avif",
       description:
-        'Our Kvadrat Really series is made from "waste" wool textiles. The multiple layers creates a tactile and sculptural look. They are frame in handmade solid oak frames.',
+        "Notre service de livraison assure l'acheminement sécurisé de vos commandes dans les meilleurs délais. Nous livrons dans Paris et alentours.",
     },
   ];
 
@@ -58,13 +58,11 @@ const ExpertiseSection = () => {
     <section ref={sectionRef} className="py-16 bg-white">
       <div className="container px-4 mx-auto">
         <div className="flex items-center justify-between mb-12">
-          <h2 className="text-4xl font-light">Expertises</h2>
+          <h2 className="text-4xl font-light text-black">Expertises</h2>
           <a
             href="#"
             className="text-gray-600 transition-colors hover:text-gray-900"
-          >
-            Discover all
-          </a>
+          ></a>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {expertises.map((expertise, index) => (
